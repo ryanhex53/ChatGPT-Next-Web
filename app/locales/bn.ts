@@ -363,6 +363,12 @@ const bn: PartialLocaleType = {
           Title: "ইন্টারফেস সংস্করণ (claude api version)",
           SubTitle: "নির্দিষ্ট API সংস্করণ প্রবেশ করুন",
         },
+
+        VertexAI: {
+          Title: "গুগল ক্লাউড Vertex AI ইন্টারফেস ব্যবহার করুন",
+          SubTitle:
+            "উদাহরণটি দেখুন, Google Cloud Vertex AI ইন্টারফেসের ঠিকানা প্রদান করুন",
+        },
       },
       Google: {
         ApiKey: {

@@ -76,6 +76,8 @@ const DEFAULT_ACCESS_STATE = {
   anthropicUrl: DEFAULT_ANTHROPIC_URL,
   anthropicApiKey: "",
   anthropicApiVersion: "2023-06-01",
+  /** use google cloud vertex ai for anthropic */
+  anthropicVertexAI: false,
 
   // baidu
   baiduUrl: DEFAULT_BAIDU_URL,

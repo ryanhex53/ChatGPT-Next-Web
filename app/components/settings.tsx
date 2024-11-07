@@ -912,10 +912,27 @@ export function Settings() {
     ServiceProvider.Anthropic && (
     <>
       <ListItem
+        title={Locale.Settings.Access.Anthropic.VertexAI.Title}
+        subTitle={Locale.Settings.Access.Anthropic.VertexAI.SubTitle}
+      >
+        <input
+          aria-label={Locale.Settings.Access.Anthropic.VertexAI.Title}
+          type="checkbox"
+          checked={accessStore.anthropicVertexAI}
+          onChange={(e) =>
+            accessStore.update(
+              (access) => (access.anthropicVertexAI = e.currentTarget.checked),
+            )
+          }
+        ></input>
+      </ListItem>
+      <ListItem
         title={Locale.Settings.Access.Anthropic.Endpoint.Title}
         subTitle={
           Locale.Settings.Access.Anthropic.Endpoint.SubTitle +
-          Anthropic.ExampleEndpoint
+          (accessStore.anthropicVertexAI
+            ? Anthropic.ExampleVertexEndpoint
+            : Anthropic.ExampleEndpoint)
         }
       >
         <input

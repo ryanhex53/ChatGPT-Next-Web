@@ -375,6 +375,11 @@ const cn = {
           Title: "接口版本 (claude api version)",
           SubTitle: "选择一个特定的 API 版本输入",
         },
+
+        VertexAI: {
+          Title: "使用谷歌云Vertex AI接口",
+          SubTitle: "参照样列，提供 Google Cloud Vertex AI 接口地址",
+        },
       },
       Google: {
         ApiKey: {

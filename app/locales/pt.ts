@@ -358,6 +358,12 @@ const pt: PartialLocaleType = {
           Title: "Versão API (Versão api claude)",
           SubTitle: "Verifique sua versão API do console Anthropic",
         },
+
+        VertexAI: {
+          Title: "Usando a interface do Google Cloud Vertex AI",
+          SubTitle:
+            "Consulte a lista de exemplos e forneça o endereço da interface do Google Cloud Vertex AI",
+        },
       },
       CustomModel: {
         Title: "Modelos Personalizados",

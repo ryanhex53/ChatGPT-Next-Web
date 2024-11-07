@@ -362,6 +362,12 @@ const vi: PartialLocaleType = {
           Title: "Phiên bản giao diện (phiên bản API claude)",
           SubTitle: "Chọn một phiên bản API cụ thể để nhập",
         },
+
+        VertexAI: {
+          Title: "Sử dụng giao diện Google Cloud Vertex AI",
+          SubTitle:
+            "Tham khảo danh sách mẫu và cung cấp địa chỉ giao diện Google Cloud Vertex AI",
+        },
       },
       Google: {
         ApiKey: {

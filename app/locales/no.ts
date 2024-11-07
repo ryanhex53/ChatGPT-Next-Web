@@ -368,6 +368,12 @@ const no: PartialLocaleType = {
           Title: "API-versjon (claude api versjon)",
           SubTitle: "Velg en spesifikk API-versjon",
         },
+
+        VertexAI: {
+          Title: "Bruke Google Cloud Vertex AI-grensesnittet",
+          SubTitle:
+            "Se eksempellisten og oppgi Google Cloud Vertex AI-grensesnittadressen",
+        },
       },
       Google: {
         ApiKey: {

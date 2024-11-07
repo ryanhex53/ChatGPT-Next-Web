@@ -362,6 +362,12 @@ const cs: PartialLocaleType = {
           Title: "Verze rozhraní (claude api version)",
           SubTitle: "Vyberte konkrétní verzi API",
         },
+
+        VertexAI: {
+          Title: "Používání rozhraní Google Cloud Vertex AI",
+          SubTitle:
+            "Podívejte se na ukázkový seznam a uveďte adresu rozhraní Google Cloud Vertex AI",
+        },
       },
       Google: {
         ApiKey: {

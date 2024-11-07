@@ -364,6 +364,12 @@ const id: PartialLocaleType = {
           Title: "Versi Antarmuka (claude api version)",
           SubTitle: "Pilih versi API tertentu",
         },
+
+        VertexAI: {
+          Title: "Menggunakan antarmuka Google Cloud Vertex AI",
+          SubTitle:
+            "Lihat daftar contoh dan berikan alamat antarmuka Google Cloud Vertex AI",
+        },
       },
       Google: {
         ApiKey: {

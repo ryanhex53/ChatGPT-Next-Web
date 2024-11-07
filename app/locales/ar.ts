@@ -356,6 +356,11 @@ const ar: PartialLocaleType = {
           Title: "إصدار الواجهة (claude api version)",
           SubTitle: "اختر إصدار API محدد",
         },
+
+        VertexAI: {
+          Title: "استخدام واجهة Vertex AI من Google Cloud",
+          SubTitle: "راجع المثال، قدم عنوان واجهة Google Cloud Vertex AI",
+        },
       },
       Google: {
         ApiKey: {

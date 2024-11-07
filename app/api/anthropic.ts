@@ -67,10 +67,20 @@ async function request(req: NextRequest) {
     serverConfig.anthropicApiKey ||
     "";
 
-  let path = `${req.nextUrl.pathname}`.replaceAll(ApiPath.Anthropic, "");
+  const vertexAIEndpoint = req.headers.get("vertex-ai-endpoint");
+  if (vertexAIEndpoint) {
+    // Adjust the auth header name and value for Vertex AI
+    authHeaderName = "Authorization";
+    authValue = `Bearer ${authValue}`;
+  }
 
-  let baseUrl =
-    serverConfig.anthropicUrl || serverConfig.baseUrl || ANTHROPIC_BASE_URL;
+  const path = vertexAIEndpoint
+    ? ""
+    : req.nextUrl.pathname.replaceAll(ApiPath.Anthropic, "");
+
+  let baseUrl = vertexAIEndpoint
+    ? vertexAIEndpoint
+    : serverConfig.anthropicUrl || serverConfig.baseUrl || ANTHROPIC_BASE_URL;
 
   if (!baseUrl.startsWith("http")) {
     baseUrl = `https://${baseUrl}`;
@@ -95,7 +105,7 @@ async function request(req: NextRequest) {
 
   const fetchOptions: RequestInit = {
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json; charset=utf-8",
       "Cache-Control": "no-store",
       "anthropic-dangerous-direct-browser-access": "true",
       [authHeaderName]: authValue,

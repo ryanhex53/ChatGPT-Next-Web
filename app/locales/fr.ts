@@ -374,6 +374,12 @@ const fr: PartialLocaleType = {
           Title: "Version de l'interface (version API claude)",
           SubTitle: "Choisissez une version spécifique de l'API",
         },
+
+        VertexAI: {
+          Title: "Utiliser l'interface Google Cloud Vertex AI",
+          SubTitle:
+            "Reportez-vous à l'exemple de liste et fournissez l'adresse de l'interface Google Cloud Vertex AI.",
+        },
       },
       Google: {
         ApiKey: {

@@ -360,6 +360,12 @@ const jp: PartialLocaleType = {
           Title: "APIバージョン (claude api version)",
           SubTitle: "特定のAPIバージョンを選択",
         },
+
+        VertexAI: {
+          Title: "Google Cloud Vertex AI インターフェースの使用",
+          SubTitle:
+            "サンプル リストを参照して、Google Cloud Vertex AI インターフェイスのアドレスを指定します。",
+        },
       },
       Google: {
         ApiKey: {

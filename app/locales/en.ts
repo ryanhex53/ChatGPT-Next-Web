@@ -380,6 +380,12 @@ const en: LocaleType = {
           Title: "API Version (claude api version)",
           SubTitle: "Select and input a specific API version",
         },
+
+        VertexAI: {
+          Title: "Use Google Cloud Vertex AI",
+          SubTitle:
+            "Refer to the example, provide the Google Cloud Vertex AI Endpoint Address",
+        },
       },
       Baidu: {
         ApiKey: {

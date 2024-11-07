@@ -357,6 +357,12 @@ const ko: PartialLocaleType = {
           Title: "API 버전 (claude api version)",
           SubTitle: "특정 API 버전 입력",
         },
+
+        VertexAI: {
+          Title: "Google Cloud Vertex AI 인터페이스 사용",
+          SubTitle:
+            "샘플 목록을 참조하여 Google Cloud Vertex AI 인터페이스 주소를 제공하세요.",
+        },
       },
       Google: {
         ApiKey: {

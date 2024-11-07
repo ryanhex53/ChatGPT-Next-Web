@@ -358,6 +358,12 @@ const sk: PartialLocaleType = {
           Title: "Verzia API (claude verzia API)",
           SubTitle: "Vyberte špecifickú verziu časti",
         },
+
+        VertexAI: {
+          Title: "Používanie rozhrania Google Cloud Vertex AI",
+          SubTitle:
+            "Pozrite si vzorový zoznam a uveďte adresu rozhrania Google Cloud Vertex AI",
+        },
       },
       CustomModel: {
         Title: "Vlastné modely",

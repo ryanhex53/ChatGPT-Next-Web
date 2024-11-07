@@ -42,6 +42,13 @@ export interface AnthropicChatRequest {
   stream?: boolean; // Whether to incrementally stream the response using server-sent events.
 }
 
+// Ref: https://cloud.google.com/vertex-ai/generative-ai/docs/partner-models/use-claude#use_a_curl_command
+export interface AnthropicVertexAIChatRequest
+  extends Omit<AnthropicChatRequest, "model"> {
+  // required, default to `vertex-2023-10-16`
+  anthropic_version: string;
+}
+
 export interface ChatRequest {
   model: string; // The model that will complete your prompt.
   prompt: string; // The prompt that you want Claude to complete.
@@ -179,7 +186,7 @@ export class ClaudeApi implements LLMApi {
       });
     }
 
-    const requestBody: AnthropicChatRequest = {
+    let requestBody: AnthropicChatRequest | AnthropicVertexAIChatRequest = {
       messages: prompt,
       stream: shouldStream,
 
@@ -191,6 +198,16 @@ export class ClaudeApi implements LLMApi {
       top_k: 5,
     };
 
+    //Adjust the `requestBody` for Anthropic's Claude models with Vertex AI
+    if (accessStore.anthropicVertexAI) {
+      // remove model from requestBody cause it's not needed for Vertex AI which has model in the path
+      const { model, ...rest } = requestBody;
+      requestBody = {
+        ...rest,
+        anthropic_version:
+          accessStore.anthropicApiVersion || "vertex-2023-10-16",
+      };
+    }
     const path = this.path(Anthropic.ChatPath);
 
     const controller = new AbortController();
@@ -381,16 +398,18 @@ export class ClaudeApi implements LLMApi {
     const accessStore = useAccessStore.getState();
 
     let baseUrl: string = "";
-
-    if (accessStore.useCustomConfig) {
+    // Do not modify the && condition, vertex ai endpoint should be called by backend to avoid cors issue
+    if (accessStore.useCustomConfig && !accessStore.anthropicVertexAI) {
       baseUrl = accessStore.anthropicUrl;
     }
 
     // if endpoint is empty, use default endpoint
     if (baseUrl.trim().length === 0) {
       const isApp = !!getClientConfig()?.isApp;
-
-      baseUrl = isApp ? ANTHROPIC_BASE_URL : ApiPath.Anthropic;
+      // if isApp, use the custom endpoint first, otherwise use the default endpoint
+      baseUrl = isApp
+        ? accessStore.anthropicUrl || ANTHROPIC_BASE_URL
+        : ApiPath.Anthropic;
     }
 
     if (!baseUrl.startsWith("http") && !baseUrl.startsWith("/api")) {

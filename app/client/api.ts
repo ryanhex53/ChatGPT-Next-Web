@@ -315,7 +315,21 @@ export function getHeaders(ignoreHeaders: boolean = false) {
     isAzure || isAnthropic || isGoogle,
   );
 
-  if (bearerToken) {
+  // Adjust the auth header name and value for Vertex AI
+  if (
+    isAnthropic &&
+    accessStore.anthropicVertexAI &&
+    accessStore.anthropicUrl &&
+    bearerToken
+  ) {
+    if (clientConfig?.isApp) {
+      headers["Authorization"] = `Bearer ${bearerToken}`;
+    } else {
+      headers[authHeader] = bearerToken;
+      // set vertex-ai-endpoint header so that the nextjs backend can adjust the request url
+      headers["vertex-ai-endpoint"] = accessStore.anthropicUrl;
+    }
+  } else if (bearerToken) {
     headers[authHeader] = bearerToken;
   } else if (isEnabledAccessControl && validString(accessStore.accessCode)) {
     headers["Authorization"] = getBearerToken(

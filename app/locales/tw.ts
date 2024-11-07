@@ -363,6 +363,11 @@ const tw = {
           Title: "API 版本 (claude api version)",
           SubTitle: "指定一個特定的 API 版本",
         },
+
+        VertexAI: {
+          Title: "使用谷歌雲端Vertex AI接口",
+          SubTitle: "參考範例，提供 Google Cloud Vertex AI 端點位址",
+        },
       },
       Google: {
         ApiKey: {

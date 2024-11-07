@@ -154,6 +154,8 @@ export const Anthropic = {
   ChatPath: "v1/messages",
   ChatPath1: "v1/complete",
   ExampleEndpoint: "https://api.anthropic.com",
+  ExampleVertexEndpoint:
+    "https://<LOC>-aiplatform.googleapis.com/v1/projects/<PROJECT>/locations/<LOC>/publishers/anthropic/models/<MODEL>:streamRawPredict",
   Vision: "2023-06-01",
 };
 
