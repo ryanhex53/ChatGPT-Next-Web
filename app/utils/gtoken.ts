@@ -1,7 +1,7 @@
 /**
  * npm:gtoken patched version for nextjs edge runtime, by ryanhex53
  */
-import { default as axios } from "axios";
+// import { default as axios } from "axios";
 import { SignJWT, importPKCS8 } from "jose";
 
 const GOOGLE_TOKEN_URL = "https://www.googleapis.com/oauth2/v4/token";
@@ -192,9 +192,9 @@ export class GoogleToken {
       throw new Error("No token to revoke.");
     }
     const url = GOOGLE_REVOKE_TOKEN_URL + this.accessToken;
-    await axios.get(url, { timeout: 10000 });
+    // await axios.get(url, { timeout: 10000 });
     // uncomment below if prefer using fetch, but fetch will not follow HTTPS_PROXY
-    // await fetch(url, { method: "GET" });
+    await fetch(url, { method: "GET" });
 
     this.#configure({
       email: this.iss,
@@ -249,27 +249,22 @@ export class GoogleToken {
     body.append("grant_type", "urn:ietf:params:oauth:grant-type:jwt-bearer");
     body.append("assertion", signedJWT);
     try {
-      const res = await axios.post<TokenData>(GOOGLE_TOKEN_URL, body, {
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        timeout: 15000,
-        proxy: {
-          host: "10.11.12.131",
-          port: 7890,
-          protocol: "http",
-        },
-        validateStatus: (status) => {
-          return status >= 200 && status < 300;
-        },
-      });
-      this.rawToken = res.data;
-
-      // // uncomment below if prefer using fetch, but fetch will not follow HTTPS_PROXY
-      // const res = await fetch(GOOGLE_TOKEN_URL, {
-      //   method: "POST",
-      //   body,
+      // const res = await axios.post<TokenData>(GOOGLE_TOKEN_URL, body, {
       //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      //   timeout: 15000,
+      //   validateStatus: (status) => {
+      //     return status >= 200 && status < 300;
+      //   },
       // });
-      // this.rawToken = (await res.json()) as TokenData;
+      // this.rawToken = res.data;
+
+      // uncomment below if prefer using fetch, but fetch will not follow HTTPS_PROXY
+      const res = await fetch(GOOGLE_TOKEN_URL, {
+        method: "POST",
+        body,
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      });
+      this.rawToken = (await res.json()) as TokenData;
 
       this.expiresAt =
         this.rawToken.expires_in === null ||
