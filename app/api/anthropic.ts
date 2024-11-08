@@ -153,11 +153,12 @@ async function request(req: NextRequest) {
         );
       }
 
-      // tick json body for vertex ai
+      // tick json body for vertex ai and update fetch options
       if (serverConfig.isVertexAI) {
         delete jsonBody.model;
         jsonBody.anthropic_version =
           serverConfig.anthropicApiVersion || "vertex-2023-10-16";
+        fetchOptions.body = JSON.stringify(jsonBody);
       }
     } catch (e) {
       console.error(`[Anthropic] filter`, e);
